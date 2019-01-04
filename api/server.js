@@ -19,11 +19,13 @@ let ArticleModel = mongoose.model('Article', schemas.ArticleSchema)
 let CommentModel = mongoose.model('Comment', schemas.CommentSchema)
 
 // get top 10 articles
-app.get('/articles', (req, res) => {
-  ArticleModel.find().sort({_id:1}).limit(10).exec((err, data) => {
-    if (err) return res.json({ success: false, error: err })
-    return res.json({ success: true, data: data })
-  })
+app.get('/articles', async (req, res) => {
+  try {
+    let articles = await ArticleModel.find().sort({_id:1}).limit(10)
+    return res.json({ success: true, data: articles })
+  } catch(err) {
+    return res.json({ success: false, error: err })
+  }
 })
 
 // get an article's comments
@@ -31,14 +33,14 @@ app.post('/articles/:articleId/comments', async (req, res) => {
   const comment = new CommentModel({ text: req.body.text })
 
   try {
-      let article = await ArticleModel.findOneAndUpdate(
-        { '_id': req.params.articleId },
-        { $push: { comments: comment } },
-        { 'upsert': false, 'new': true }
-      )
-      return res.json({ success: true, data: article })
+    let article = await ArticleModel.findOneAndUpdate(
+      { '_id': req.params.articleId },
+      { $push: { comments: comment } },
+      { 'upsert': false, 'new': true }
+    )
+    return res.json({ success: true, data: article })
   } catch(err) {
-      return res.json({ success: false, error: err.message })
+    return res.json({ success: false, error: err.message })
   }
 })
 
