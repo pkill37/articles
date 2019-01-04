@@ -27,18 +27,19 @@ app.get('/articles', (req, res) => {
 })
 
 // get an article's comments
-app.post('/articles/:articleId/comments', (req, res) => {
+app.post('/articles/:articleId/comments', async (req, res) => {
   const comment = new CommentModel({ text: req.body.text })
 
-  ArticleModel.findOneAndUpdate(
-    { '_id': req.params.articleId },
-    { $push: { comments: comment } },
-    { 'upsert': false, 'new': true },
-    (err, doc) => {
-      if (err) return res.json({ success: false, error: err.message })
-      return res.json({ success: true, data: doc })
-    }
-  )
+  try {
+      let article = await ArticleModel.findOneAndUpdate(
+        { '_id': req.params.articleId },
+        { $push: { comments: comment } },
+        { 'upsert': false, 'new': true }
+      )
+      return res.json({ success: true, data: article })
+  } catch(err) {
+      return res.json({ success: false, error: err.message })
+  }
 })
 
 // bind the server to a port and run it
