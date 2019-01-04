@@ -28,9 +28,11 @@ app.get('/articles', (req, res) => {
 
 // get an article's comments
 app.post('/articles/:articleId/comments', (req, res) => {
+  const comment = new CommentModel({ text: req.body.text })
+
   ArticleModel.findOneAndUpdate(
     { '_id': req.params.articleId },
-    { $push: { comments: {text: req.body.text} } },
+    { $push: { comments: comment } },
     { 'upsert': false, 'new': true },
     (err, doc) => {
       if (err) return res.json({ success: false, error: err.message })
