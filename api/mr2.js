@@ -9,13 +9,13 @@ db.articles.mapReduce(
             if (word) counts[word] = !!counts[word] ? counts[word] + 1 : 1;
         }
 
-        emit(this.author, { counts: counts });
+        emit(this.author, counts);
     },
     function(key, values) {
         // Keep counting occurrences of words for this author
-        let rv = { counts: {} };
+        let rv = {};
         for (let key in values) {
-            rv.counts[key] = !!rv.counts[key] ? rv.counts[key] + 1 : 1;
+            rv[key] = !!rv[key] ? rv[key] + 1 : 1;
         }
 
         return rv;
