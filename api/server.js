@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const assert = require('assert')
 
 // connect to mongo
 const mongoose = require('mongoose')
