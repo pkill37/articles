@@ -25,8 +25,6 @@ db.articles.mapReduce(
         finalize: function(key, rv) {
             return Object.keys(rv).sort((a,b) => rv[b]-rv[a]).slice(0, 10)
         },
-        out: 'mr2',
+        out: { inline: 1 }
     }
 )
-
-db.mr2.find().pretty()
