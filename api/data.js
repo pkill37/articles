@@ -2,12 +2,12 @@
 const faker = require('faker')
 const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1)
 const data = []
-for(let i = 0; i < 10000; i++) {
+for(let i = 1; i <= 10000; i++) {
     let obj = {
         title: capitalizeFirstLetter(faker.lorem.words()),
         text: faker.lorem.paragraph(),
         author: faker.name.findName(),
-        image: `${i}.jpeg`,
+        image: `${i}.jpg`,
         comments: [],
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),

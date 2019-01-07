@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
-const assert = require('assert')
+const cors = require('cors')
+app.use(cors())
+app.use(express.static('public'))
 
 // connect to mongo
 const mongoose = require('mongoose')
