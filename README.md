@@ -4,47 +4,51 @@ A demo of MongoDB and the MapReduce programming model on a dummy articles datase
 
 ## Client
 
-Install dependencies:
+1. Install dependencies:
 
-```
-npm install
-```
+    ```
+    cd client/
+    npm install
+    ```
 
-Run the development HTTP server:
+2. Run the development HTTP server:
 
-```
-npm start
-```
+    ```
+    npm start
+    ```
 
 ## Server
 
-Install Node dependencies:
+1. Install Node dependencies:
 
-```
-npm install
-```
+    ```
+    cd server/
+    npm install
+    ```
 
-Populate the `articles` collection with 10k randomly generated articles:
+2. Populate the `articles` collection with 10k randomly generated articles:
 
-```
-node data.js
-```
+    ```
+    node data.js
+    cd public/
+    ./download.sh
+    ```
 
-Run the development HTTP server:
+3. Run the development HTTP server:
 
-```
-node server.js
-```
+    ```
+    node server.js
+    ```
 
-Use the HTTP endpoints:
+4. Use the HTTP endpoints:
 
-```
-curl http://localhost:3001/articles
-```
+    ```
+    curl http://localhost:3001/articles
+    ```
 
-```
-curl --header "Content-Type: application/json" \
-    --request POST \
-    --data '{ "text": "hey there" }' \
-    http://localhost:3001/articles/5c32bb4e5e1adb436d8fa140/comments
-```
+    ```
+    curl --header "Content-Type: application/json" \
+        --request POST \
+        --data '{ "text": "hey there" }' \
+        http://localhost:3001/articles/5c32bb4e5e1adb436d8fa140/comments
+    ```
