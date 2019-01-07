@@ -4,6 +4,8 @@ A demo of MongoDB and the MapReduce programming model on a dummy articles datase
 
 ## Client
 
+The client was developed using [React](https://reactjs.org/) and [create-react-app](https://github.com/facebook/create-react-app).
+
 1. Install dependencies:
 
     ```
@@ -19,10 +21,12 @@ A demo of MongoDB and the MapReduce programming model on a dummy articles datase
 
 ## Server
 
+The server was developed using [Node](https://nodejs.org/en/), [Express](https://expressjs.com/) and [Mongoose](https://mongoosejs.com/).
+
 1. Install Node dependencies:
 
     ```
-    cd server/
+    cd api/
     npm install
     ```
 
