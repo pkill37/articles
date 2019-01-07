@@ -1,8 +1,16 @@
 # articles
 
+A demo of MongoDB and the MapReduce programming model on a dummy articles dataset.
+
 ## Client
 
-Run the client application
+Install dependencies:
+
+```
+npm install
+```
+
+Run the development HTTP server:
 
 ```
 npm start
@@ -10,13 +18,19 @@ npm start
 
 ## Server
 
-Populate the `articles` collection with 10k randomly generated articles.
+Install Node dependencies:
+
+```
+npm install
+```
+
+Populate the `articles` collection with 10k randomly generated articles:
 
 ```
 node data.js
 ```
 
-Run the HTTP server:
+Run the development HTTP server:
 
 ```
 node server.js
